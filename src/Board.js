@@ -37,6 +37,12 @@
       return colIndex + rowIndex;
     },
 
+    hasAnyRookConflictsOn: function(rowIndex, colIndex) {
+      return (
+        this.hasRowConflictAt(rowIndex) ||
+        this.hasColConflictAt(colIndex));
+    },
+
     hasAnyRooksConflicts: function() {
       return this.hasAnyRowConflicts() || this.hasAnyColConflicts();
     },
@@ -48,6 +54,11 @@
         this.hasMajorDiagonalConflictAt(this._getFirstRowColumnIndexForMajorDiagonalOn(rowIndex, colIndex)) ||
         this.hasMinorDiagonalConflictAt(this._getFirstRowColumnIndexForMinorDiagonalOn(rowIndex, colIndex))
       );
+    },
+    hasQueenConflictsOnNoRow: function(rowIndex, colIndex) {
+      return (this.hasColConflictAt(colIndex) ||
+        this.hasMajorDiagonalConflictAt(this._getFirstRowColumnIndexForMajorDiagonalOn(rowIndex, colIndex)) ||
+        this.hasMinorDiagonalConflictAt(this._getFirstRowColumnIndexForMinorDiagonalOn(rowIndex, colIndex)));
     },
 
     hasAnyQueensConflicts: function() {
